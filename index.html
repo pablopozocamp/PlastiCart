@@ -10,9 +10,8 @@
 <style>
 body{
 margin:0;
-font-family:system-ui, Arial;
+font-family:Arial;
 background:#f4fbf7;
-color:#1f2937;
 }
 
 /* NAV */
@@ -22,23 +21,14 @@ top:0;
 background:#0f3d2e;
 display:flex;
 justify-content:center;
-gap:25px;
+gap:20px;
 padding:14px;
-z-index:1000;
-box-shadow:0 4px 15px rgba(0,0,0,0.15);
 }
 
 nav a{
 color:white;
 text-decoration:none;
-font-weight:600;
-opacity:0.9;
-transition:0.2s;
-}
-
-nav a:hover{
-opacity:1;
-transform:translateY(-1px);
+font-weight:bold;
 }
 
 /* HEADER */
@@ -46,19 +36,12 @@ header{
 background:linear-gradient(135deg,#0f3d2e,#16a34a);
 color:white;
 text-align:center;
-padding:90px 20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+padding:80px 20px;
 }
 
 header h1{
 margin:0;
-font-size:56px;
-letter-spacing:1px;
-}
-
-header p{
-opacity:0.9;
-font-size:18px;
+font-size:50px;
 }
 
 /* SECTIONS */
@@ -66,63 +49,47 @@ section{
 max-width:1050px;
 margin:40px auto;
 background:white;
-padding:28px;
-border-radius:18px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-border:1px solid #e5e7eb;
-transition:0.25s;
-}
-
-section:hover{
-transform:translateY(-3px);
-box-shadow:0 14px 30px rgba(0,0,0,0.12);
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
 h2{
 color:#0f3d2e;
-margin-bottom:18px;
 }
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:14px;
+gap:12px;
 }
 
 .card{
-background:#f3fbf6;
-padding:16px;
-border-radius:14px;
+background:#eaf7ef;
+padding:15px;
+border-radius:12px;
 border-left:5px solid #16a34a;
-transition:0.2s;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-.card:hover{
-transform:scale(1.02);
-box-shadow:0 6px 18px rgba(0,0,0,0.1);
 }
 
 /* STATS */
 .stats{
 display:flex;
-gap:12px;
+gap:10px;
 flex-wrap:wrap;
 }
 
 .stat{
 flex:1;
-background:#f3fbf6;
-padding:18px;
-border-radius:14px;
+background:#e6f7ee;
+padding:15px;
+border-radius:12px;
 text-align:center;
-border:1px solid #e5e7eb;
 }
 
 .stat h3{
 margin:0;
-font-size:34px;
+font-size:32px;
 color:#16a34a;
 }
 
@@ -131,53 +98,38 @@ button{
 background:#16a34a;
 color:white;
 border:none;
-padding:11px 16px;
-border-radius:12px;
+padding:10px 15px;
+border-radius:10px;
 cursor:pointer;
-font-weight:600;
-transition:0.25s;
-box-shadow:0 3px 10px rgba(22,163,74,0.3);
 }
 
 button:hover{
 background:#0f3d2e;
-transform:translateY(-2px);
-box-shadow:0 6px 15px rgba(15,61,46,0.4);
 }
 
 /* MAPA */
 #map{
-height:470px;
-border-radius:16px;
+height:450px;
+border-radius:15px;
 margin-top:15px;
-border:1px solid #d1d5db;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
 /* AVISOS PANEL */
 #avisosPanel{
-background:#f9fffb;
-border-radius:14px;
-padding:18px;
+background:#ffffff;
+border-radius:12px;
+padding:15px;
 border:1px solid #d1fae5;
 margin-top:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.05);
 }
 
 input, select, textarea{
 width:100%;
-padding:10px;
+padding:8px;
 margin-top:6px;
-margin-bottom:12px;
-border-radius:10px;
-border:1px solid #d1d5db;
-outline:none;
-transition:0.2s;
-}
-
-input:focus, select:focus, textarea:focus{
-border-color:#16a34a;
-box-shadow:0 0 0 3px rgba(22,163,74,0.15);
+margin-bottom:10px;
+border-radius:8px;
+border:1px solid #ccc;
 }
 
 /* LISTA AVISOS */
@@ -187,12 +139,11 @@ margin-top:15px;
 
 .aviso{
 background:#f0fdf4;
-padding:12px;
+padding:10px;
 border-left:5px solid #16a34a;
-margin-bottom:10px;
-border-radius:10px;
+margin-bottom:8px;
+border-radius:8px;
 font-size:14px;
-box-shadow:0 2px 6px rgba(0,0,0,0.05);
 }
 
 /* NOTIF */
@@ -202,10 +153,9 @@ bottom:20px;
 right:20px;
 background:#16a34a;
 color:white;
-padding:12px 15px;
+padding:12px;
 border-radius:10px;
 display:none;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
 
 /* FOOTER */
@@ -213,9 +163,8 @@ footer{
 background:#0f3d2e;
 color:white;
 text-align:center;
-padding:22px;
+padding:20px;
 margin-top:50px;
-letter-spacing:0.5px;
 }
 </style>
 </head>
@@ -322,11 +271,11 @@ PlastiCart © 2026 - Pilas (Sevilla) ♻️
 
 <script>
 
-/* MAPA */
+/* MAPA (FIX GITHUB PAGES) */
 let map = L.map('map').setView([37.3016, -6.3006], 15);
 
-L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png', {
-attribution:'© OpenStreetMap'
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+attribution: '&copy; OpenStreetMap &copy; CARTO'
 }).addTo(map);
 
 /* PUNTOS */
