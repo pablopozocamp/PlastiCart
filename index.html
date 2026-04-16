@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>PlastiCart - Pilas</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:system-ui, Arial;
+background:#f4fbf7;
+color:#1f2937;
+}
+
+/* NAV */
+nav{
+position:sticky;
+top:0;
+background:#0f3d2e;
+display:flex;
+justify-content:center;
+gap:25px;
+padding:14px;
+z-index:1000;
+box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:600;
+opacity:0.9;
+transition:0.2s;
+}
+
+nav a:hover{
+opacity:1;
+transform:translateY(-1px);
+}
+
+/* HEADER */
+header{
+background:linear-gradient(135deg,#0f3d2e,#16a34a);
+color:white;
+text-align:center;
+padding:90px 20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+header h1{
+margin:0;
+font-size:56px;
+letter-spacing:1px;
+}
+
+header p{
+opacity:0.9;
+font-size:18px;
+}
+
+/* SECTIONS */
+section{
+max-width:1050px;
+margin:40px auto;
+background:white;
+padding:28px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+border:1px solid #e5e7eb;
+transition:0.25s;
+}
+
+section:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 30px rgba(0,0,0,0.12);
+}
+
+h2{
+color:#0f3d2e;
+margin-bottom:18px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:14px;
+}
+
+.card{
+background:#f3fbf6;
+padding:16px;
+border-radius:14px;
+border-left:5px solid #16a34a;
+transition:0.2s;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card:hover{
+transform:scale(1.02);
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* STATS */
+.stats{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.stat{
+flex:1;
+background:#f3fbf6;
+padding:18px;
+border-radius:14px;
+text-align:center;
+border:1px solid #e5e7eb;
+}
+
+.stat h3{
+margin:0;
+font-size:34px;
+color:#16a34a;
+}
+
+/* BUTTON */
+button{
+background:#16a34a;
+color:white;
+border:none;
+padding:11px 16px;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:0.25s;
+box-shadow:0 3px 10px rgba(22,163,74,0.3);
+}
+
+button:hover{
+background:#0f3d2e;
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(15,61,46,0.4);
+}
+
+/* MAPA */
+#map{
+height:470px;
+border-radius:16px;
+margin-top:15px;
+border:1px solid #d1d5db;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* AVISOS PANEL */
+#avisosPanel{
+background:#f9fffb;
+border-radius:14px;
+padding:18px;
+border:1px solid #d1fae5;
+margin-top:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+input, select, textarea{
+width:100%;
+padding:10px;
+margin-top:6px;
+margin-bottom:12px;
+border-radius:10px;
+border:1px solid #d1d5db;
+outline:none;
+transition:0.2s;
+}
+
+input:focus, select:focus, textarea:focus{
+border-color:#16a34a;
+box-shadow:0 0 0 3px rgba(22,163,74,0.15);
+}
+
+/* LISTA AVISOS */
+#listaAvisos{
+margin-top:15px;
+}
+
+.aviso{
+background:#f0fdf4;
+padding:12px;
+border-left:5px solid #16a34a;
+margin-bottom:10px;
+border-radius:10px;
+font-size:14px;
+box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* NOTIF */
+#notif{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#16a34a;
+color:white;
+padding:12px 15px;
+border-radius:10px;
+display:none;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+footer{
+background:#0f3d2e;
+color:white;
+text-align:center;
+padding:22px;
+margin-top:50px;
+letter-spacing:0.5px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#sistema">Sistema</a>
+<a href="#datos">Datos</a>
+<a href="#ranking">Ranking</a>
+<a href="#mapa">Mapa</a>
+<a href="#avisos">Avisos</a>
+</nav>
+
+<header id="inicio">
+<h1>♻️ PlastiCart</h1>
+<p>Sistema inteligente de reciclaje en Pilas (Sevilla)</p>
+</header>
+
+<section id="sistema">
+<h2>🛠️ Sistema PlastiCart</h2>
+
+<div class="grid">
+<div class="card">📦 Contenedores inteligentes</div>
+<div class="card">📲 Avisos en tiempo real</div>
+<div class="card">🚛 Rutas optimizadas</div>
+<div class="card">🏆 Sistema de puntos</div>
+<div class="card">⚡ Ahorro energético</div>
+<div class="card">🌍 Reducción de contaminación</div>
+</div>
+</section>
+
+<section id="datos">
+<h2>📊 Impacto ambiental</h2>
+
+<div class="stats">
+<div class="stat">
+<h3 id="carton">560</h3>
+<p>kg cartón</p>
+</div>
+
+<div class="stat">
+<h3 id="plastico">370</h3>
+<p>kg plástico</p>
+</div>
+
+<div class="stat">
+<h3 id="energia">920</h3>
+<p>kWh energía</p>
+</div>
+</div>
+</section>
+
+<section id="ranking">
+<h2>🏆 Ranking ecológico (Pilas)</h2>
+
+<div class="card">🥇 Colegio Soledad - 1450 pts</div>
+<div class="card">🥈 CEIP Pedro de Castro - 1200 pts</div>
+<div class="card">🥉 Instituto Pilas - 980 pts</div>
+</section>
+
+<section id="mapa">
+<h2>📍 Mapa interactivo de Pilas</h2>
+<div id="map"></div>
+</section>
+
+<section id="avisos">
+<h2>📢 Sistema de avisos ciudadanos</h2>
+
+<div id="avisosPanel">
+
+<label>Tipo de incidencia</label>
+<select id="tipo">
+<option>Contenedor lleno</option>
+<option>Basura en la calle</option>
+<option>Contaminación</option>
+<option>Incidencia en reciclaje</option>
+</select>
+
+<label>Zona</label>
+<select id="zona">
+<option>Centro de Pilas</option>
+<option>Zona comercial</option>
+<option>Parque</option>
+<option>Zona industrial</option>
+</select>
+
+<label>Descripción</label>
+<textarea id="desc" placeholder="Describe el problema..."></textarea>
+
+<button onclick="enviarAviso()">Enviar aviso 📩</button>
+
+<div id="listaAvisos"></div>
+
+</div>
+</section>
+
+<div id="notif"></div>
+
+<footer>
+PlastiCart © 2026 - Pilas (Sevilla) ♻️
+</footer>
+
+<script>
+
+/* MAPA */
+let map = L.map('map').setView([37.3016, -6.3006], 15);
+
+L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png', {
+attribution:'© OpenStreetMap'
+}).addTo(map);
+
+/* PUNTOS */
+L.marker([37.3016,-6.3006]).addTo(map).bindPopup("♻️ Centro de Pilas");
+L.marker([37.3040,-6.2980]).addTo(map).bindPopup("🏫 Colegio");
+L.marker([37.2995,-6.3040]).addTo(map).bindPopup("🌳 Parque");
+L.marker([37.3030,-6.3055]).addTo(map).bindPopup("🛍️ Comercial");
+L.marker([37.2980,-6.2965]).addTo(map).bindPopup("🏭 Industrial");
+
+/* AVISOS */
+function enviarAviso(){
+
+let tipo=document.getElementById("tipo").value;
+let zona=document.getElementById("zona").value;
+let desc=document.getElementById("desc").value;
+
+if(desc.trim()==""){
+alert("Escribe una descripción");
+return;
+}
+
+let aviso=document.createElement("div");
+aviso.className="aviso";
+aviso.innerHTML="📌 <b>"+tipo+"</b><br>📍 "+zona+"<br>📝 "+desc;
+
+document.getElementById("listaAvisos").prepend(aviso);
+
+document.getElementById("desc").value="";
+
+show("Aviso enviado correctamente 📩");
+}
+
+function show(t){
+let n=document.getElementById("notif");
+n.innerText=t;
+n.style.display="block";
+setTimeout(()=>n.style.display="none",2000);
+}
+
+</script>
+
+</body>
+</html>
