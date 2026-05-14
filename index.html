@@ -595,8 +595,7 @@ footer p{color:var(--text-3);margin-bottom:22px}
     <div class="hero-stats">
       <div class="hs-item"><div class="hs-num">560kg</div><div class="hs-label">Cartón recogido</div></div>
       <div class="hs-item"><div class="hs-num">370kg</div><div class="hs-label">Plástico recogido</div></div>
-      <div class="hs-item"><div class="hs-num">920kWh</div><div class="hs-label">Energía ahorrada</div></div>
-      <div class="hs-item"><div class="hs-num">5</div><div class="hs-label">Zonas monitorizadas</div></div>
+<div class="hs-item"><div class="hs-num">5</div><div class="hs-label">Zonas monitorizadas</div></div>
     </div>
   </div>
 
@@ -633,11 +632,7 @@ footer p{color:var(--text-3);margin-bottom:22px}
       <span class="card-emoji">🏆</span>
       <div class="card-text"><strong>Sistema de puntos</strong><span>Recompensas y reconocimientos para incentivar el reciclaje responsable</span></div>
     </div>
-    <div class="card reveal d5">
-      <span class="card-emoji">⚡</span>
-      <div class="card-text"><strong>Ahorro energético</strong><span>Reducción de emisiones con rutas y sensores de bajo consumo</span></div>
-    </div>
-    <div class="card reveal d6">
+<div class="card reveal d6">
       <span class="card-emoji">🌍</span>
       <div class="card-text"><strong>Reducción de contaminación</strong><span>Menor impacto medioambiental en toda la localidad de Pilas</span></div>
     </div>
@@ -658,10 +653,6 @@ footer p{color:var(--text-3);margin-bottom:22px}
     <div class="stat reveal d2">
       <div class="stat-num" id="plastico">0</div>
       <p>kg plástico recogido</p>
-    </div>
-    <div class="stat reveal d3">
-      <div class="stat-num" id="energia">0</div>
-      <p>kWh energía ahorrada</p>
     </div>
   </div>
 </section>
@@ -887,7 +878,6 @@ const statsObs = new IntersectionObserver((entries) => {
     if(e.isIntersecting){
       animCount('carton',  560, 1400);
       animCount('plastico',370, 1400);
-      animCount('energia', 920, 1400);
       statsObs.disconnect();
     }
   });
